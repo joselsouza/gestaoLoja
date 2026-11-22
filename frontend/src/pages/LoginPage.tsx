@@ -23,21 +23,32 @@ export default function LoginPage() {
 
   return (
     <div className="login">
-      <div className="cartao">
-        <img src="/logo.png" alt="Logo A Vitoriosa de Angra" />
-        <p className="eyebrow">Gestão da loja</p>
-        <h1>A Vitoriosa <em>de Angra</em></h1>
-        <form className="form" onSubmit={submit}>
-          <label>E-mail
-            <input type="email" autoComplete="username" value={email} onChange={(e) => setEmail(e.target.value)} required autoFocus />
-          </label>
-          <label>Senha
-            <input type="password" autoComplete="current-password" value={senha} onChange={(e) => setSenha(e.target.value)} required />
-          </label>
-          {erro && <p className="erro">{erro}</p>}
-          <button type="submit" className="btn-grande" disabled={enviando}>{enviando ? 'Entrando…' : 'Entrar'}</button>
-        </form>
+      <div className="login-palco">
+        <div className="login-marca">
+          <img src="/logo.png" alt="Logo A Vitoriosa de Angra" />
+          <h1>A Vitoriosa<br /><em>de Angra</em></h1>
+          <p>Caixa do dia, produtos, estoque e orçamentos da loja em um só lugar.</p>
+        </div>
+        <div className="caixa">
+          <p className="eyebrow">Gestão da loja</p>
+          <h2>Entrar</h2>
+          <p className="sub">Use o e-mail e a senha cadastrados para você.</p>
+          <form className="form" onSubmit={submit}>
+            <label>E-mail
+              <input type="email" autoComplete="username" value={email} onChange={(e) => setEmail(e.target.value)} required autoFocus />
+            </label>
+            <label>Senha
+              <input type="password" autoComplete="current-password" value={senha} onChange={(e) => setSenha(e.target.value)} required />
+            </label>
+            {erro && <p className="erro">{erro}</p>}
+            <button type="submit" disabled={enviando}>{enviando ? 'Entrando…' : 'Entrar'}</button>
+          </form>
+        </div>
       </div>
+      <footer className="rodape-site">
+        <span>A Vitoriosa de Angra · Gestão da loja</span>
+        <span>© {new Date().getFullYear()}</span>
+      </footer>
     </div>
   );
 }

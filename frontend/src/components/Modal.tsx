@@ -1,4 +1,5 @@
 import { ReactNode, useEffect } from 'react';
+import { IconeFechar } from './Icones';
 
 export default function Modal({ titulo, onClose, children }: { titulo: string; onClose: () => void; children: ReactNode }) {
   useEffect(() => {
@@ -8,13 +9,13 @@ export default function Modal({ titulo, onClose, children }: { titulo: string; o
   }, [onClose]);
 
   return (
-    <div className="modal-fundo" onMouseDown={onClose}>
-      <div className="modal" role="dialog" aria-label={titulo} onMouseDown={(e) => e.stopPropagation()}>
-        <div className="modal-topo">
+    <div className="modal-fundo" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
+      <div className="modal" role="dialog" aria-modal="true" aria-label={titulo}>
+        <header>
           <h2>{titulo}</h2>
-          <button className="btn-link" onClick={onClose} aria-label="Fechar">✕</button>
-        </div>
-        {children}
+          <button className="btn-icone" onClick={onClose} aria-label="Fechar"><IconeFechar /></button>
+        </header>
+        <div className="corpo">{children}</div>
       </div>
     </div>
   );

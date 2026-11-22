@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
-import { IconeCaixa, IconeEstoque, IconeOrcamento, IconeProdutos } from '../components/Icones';
+import { IconeCaixa, IconeEstoque, IconeOrcamento, IconeProdutos, IconeSeta } from '../components/Icones';
 
 const ATALHOS: { para: string; rotulo: string; descricao: string; icone: ReactNode }[] = [
   { para: '/caixa', rotulo: 'Caixa', descricao: 'Abrir, vender e fechar o dia', icone: <IconeCaixa /> },
@@ -20,13 +20,10 @@ export default function InicioPage() {
   return (
     <section>
       <div className="cabecalho">
-        <div className="cabecalho-marca">
-          <img src="/logo.png" alt="Logo A Vitoriosa de Angra" />
-          <div>
-            <p className="eyebrow">A Vitoriosa de Angra</p>
-            <h1>{saudacao()}<em>{email ? `, ${email.split('@')[0]}` : ''}.</em></h1>
-            <p className="sub">O que você quer fazer agora?</p>
-          </div>
+        <div>
+          <p className="eyebrow">Visão geral</p>
+          <h1>{saudacao()}<em>{email ? `, ${email.split('@')[0]}` : ''}.</em></h1>
+          <p className="sub">O que você quer fazer agora?</p>
         </div>
       </div>
 
@@ -34,6 +31,7 @@ export default function InicioPage() {
         {ATALHOS.map((a) => (
           <Link key={a.para} to={a.para} className="atalho">
             <span className="atalho-icone">{a.icone}</span>
+            <IconeSeta className="atalho-seta" />
             <span className="atalho-rotulo">{a.rotulo}</span>
             <span className="atalho-desc">{a.descricao}</span>
           </Link>
